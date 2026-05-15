@@ -16,14 +16,20 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Instalar dependências
-        run: npm install
+  jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
 
-      - name: Rodar testes
-        run: npm test
-
-      - name: Run build (optional)
-        run: npm run build --if-present
+      - name: Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: Usar Composite Action
+        uses: nomeDoUsuario/nomeDoRepositorio@v1
 
       - name: Archive production package
         run: zip -r release.zip .
